@@ -3,8 +3,8 @@
 #include <iostream>
 #include <random>
 
-void printVector(const std::vector<char> charV);
-void printVector(const std::vector<char *> charPtrV);
+void printVector(const std::vector<char>& charV);
+void printVector(const std::vector<char *>& charPtrV);
 
 int main()
 {
@@ -78,31 +78,30 @@ int main()
     
     printVector(charPtrVector);
 
-    std::cout << "Done it!" << std::endl;
-
+    std::cout << "Correct grammar is: I have done it!" << std::endl;
     return 0;
 }
 
-void printVector(const std::vector<char> charV)
+void printVector(const std::vector<char>& charV)
 {
     if(charV.size() != 0)
     {
-        for(char c : charV)
+        for(const auto& elem : charV)
         {
-            std::cout << c;
+            std::cout << elem;
         }
         std::cout << std::endl;
     }
 
 }
 
-void printVector(const std::vector<char *> charPtrV)
+void printVector(const std::vector<char *>& charPtrV)
 {
     if(charPtrV.size() != 0)
     {
-        for(char* c : charPtrV)
+        for(const auto& elem : charPtrV)
         {
-            std::cout << c;
+            std::cout << elem;
         }
         std::cout << std::endl;
     }
