@@ -10,6 +10,7 @@ int main()
 {
     // Create a vector of characters with "abcde" in it
     std::vector<char> charVector { 'a', 'b', 'c', 'd', 'e' };
+    charVector.reserve(26);
 
     // Add 'f' -> 'z' to vector
     for(char c = 'f'; c <= 'z'; ++c)
@@ -52,12 +53,12 @@ int main()
     charPtrVector.reserve(5);
 
     // dynamically copy first 5 chars of regular vector to pointer vector
-    std::transform(charVector.begin(), charVector.begin() + 5,
-                   std::back_inserter(charPtrVector),
+    std::transform(charVector.begin(), charVector.begin() + 5, std::back_inserter(charPtrVector),
                    [] (char c) { return new char(c); });
 
     printVector(charPtrVector);
 
+    // Shuffle vector of pointers
     std::shuffle(charPtrVector.begin(), charPtrVector.end(), gen);
 
     printVector(charPtrVector);
@@ -78,33 +79,26 @@ int main()
     
     printVector(charPtrVector);
 
-    std::cout << "Correct grammar is: I have done it!" << std::endl;
+    std::cout << "Done it!" << std::endl;
+
     return 0;
 }
 
 void printVector(const std::vector<char>& charV)
 {
-    if(charV.size() != 0)
-    {
-        for(const auto& elem : charV)
+        for(char c : charV)
         {
-            std::cout << elem;
+            std::cout << c;
         }
         std::cout << std::endl;
-    }
-
 }
 
 void printVector(const std::vector<char *>& charPtrV)
 {
-    if(charPtrV.size() != 0)
-    {
-        for(const auto& elem : charPtrV)
+        for(char* c : charPtrV)
         {
-            std::cout << elem;
+            std::cout << *c;
         }
         std::cout << std::endl;
-    }
-
 }
 
